@@ -1,15 +1,15 @@
 {
-  "title": "Light, fast & responsive",
-  "text": "This template is ready to use, so you don't need to change anything at a component level, unless you want to customize the default styling.",
+  "title": "Civic Code AI Answers Questions",
+  "text": "TAt Civic Code AI, we specialize in developing customized kiosks that cater to the unique needs of county governments.",
   "section": [
     {
-      "title": "Why Antd?",
-      "content": "Ant Design is a React UI library that has a lot of easy-to-use components for building elegant UI.",
+      "title": "Is there a parade this weekend, and what is its route?",
+      "content": "Providing up-to-date information of county calendars, including both upcoming and past events.",
       "icon": "notes.svg"
     },
     {
-      "title": "Why styled-components?",
-      "content": "Styled Components gives you total control over your components.",
+      "title": "What are the local parks, museums, and recreations?",
+      "content": "Offering details on nearby parks, museums, recreational facilities, and upcoming community events.",
       "icon": "notes.svg"
     }
   ]
