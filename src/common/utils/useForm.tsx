@@ -1,94 +1,56 @@
 import { useState } from "react";
-import { notification } from "antd";
+import validate from "./validationRules"; // Ensure this file exists for validation
+import { IValues } from "../types"; // Import the correct type
 
-interface IValues {
-  name: string;
-  email: string;
-  message: string;
-}
+export const useForm = (validate: (values: IValues) => Partial<IValues>) => {
+    const [values, setValues] = useState<IValues>({ name: "", email: "", message: "" });
+    const [errors, setErrors] = useState<Partial<IValues>>({});
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [successMessage, setSuccessMessage] = useState<string | null>(null);
+    const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-const initialValues: IValues = {
-  name: "",
-  email: "",
-  message: "",
-};
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = event.target;
+        setValues({ ...values, [name]: value });
+    };
 
-export const useForm = (validate: { (values: IValues): IValues }) => {
-  const [formState, setFormState] = useState<{
-    values: IValues;
-    errors: IValues;
-  }>({
-    values: { ...initialValues },
-    errors: { ...initialValues },
-  });
+    const handleSubmit = async (event: React.FormEvent) => {
+        event.preventDefault();
+        setIsSubmitting(true);
+        setSuccessMessage(null);
+        setErrorMessage(null);
 
-  const handleSubmit = async (event: React.ChangeEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const values = formState.values;
-    const errors = validate(values);
-    setFormState((prevState) => ({ ...prevState, errors }));
+        // Validate form fields
+        const validationErrors = validate(values);
+        setErrors(validationErrors);
 
-    const url = ""; // Fill in your API URL here
-
-    try {
-      if (Object.values(errors).every((error) => error === "")) {
-        const response = await fetch(url, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(values),
-        });
-
-        if (!response.ok) {
-          notification["error"]({
-            message: "Error",
-            description:
-              "There was an error sending your message, please try again later.",
-          });
-        } else {
-          event.target.reset();
-          setFormState(() => ({
-            values: { ...initialValues },
-            errors: { ...initialValues },
-          }));
-
-          notification["success"]({
-            message: "Success",
-            description: "Your message has been sent!",
-          });
+        // Stop submission if validation fails
+        if (Object.keys(validationErrors).length > 0) {
+            setIsSubmitting(false);
+            return;
         }
-      }
-    } catch (error) {
-      notification["error"]({
-        message: "Error",
-        description: "Failed to submit form. Please try again later.",
-      });
-    }
-  };
 
-  const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    event.persist();
-    const { name, value } = event.target;
-    setFormState((prevState) => ({
-      ...prevState,
-      values: {
-        ...prevState.values,
-        [name]: value,
-      },
-      errors: {
-        ...prevState.errors,
-        [name]: "",
-      },
-    }));
-  };
+        try {
+            const response = await fetch('/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(values),
+            });
 
-  return {
-    handleChange,
-    handleSubmit,
-    values: formState.values,
-    errors: formState.errors,
-  };
+            const result = await response.json();
+            if (result.success) {
+                setSuccessMessage("✅ Email Sent Successfully!");
+                setValues({ name: "", email: "", message: "" }); // Reset form fields
+            } else {
+                setErrorMessage("❌ Failed to send email. Try again later.");
+            }
+        } catch (error) {
+            console.error("Error submitting form:", error);
+            setErrorMessage("❌ An error occurred. Please try again.");
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
+    return { values, errors, handleChange, handleSubmit, isSubmitting, successMessage, errorMessage };
 };

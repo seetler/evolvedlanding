@@ -51,11 +51,11 @@ const Home = () => {
         icon="family.webp"
         id="product"
       />
-      {/* <Contact
+      <Contact
         title={ContactContent.title}
         content={ContactContent.text}
         id="contact"
-      /> */}
+      />
     </Container>
   );
 };

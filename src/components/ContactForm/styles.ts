@@ -1,36 +1,32 @@
 import styled from "styled-components";
 
-export const ContactContainer = styled("div")`
-  padding: 5rem 0;
-
-  @media only screen and (max-width: 1024px) {
-    padding: 3rem 0;
-  }
+export const ContactContainer = styled.div`
+  padding: 50px 0;
 `;
 
-export const FormGroup = styled("form")`
-  width: 100%;
-  max-width: 520px;
-
-  @media only screen and (max-width: 1045px) {
-    max-width: 100%;
-    margin-top: 2rem;
-  }
+export const FormGroup = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 `;
 
-export const Span = styled("span")`
-  display: block;
-  font-weight: 600;
-  color: rgb(255, 130, 92);
-  height: 0.775rem;
-  padding: 0 0.675rem;
+export const Span = styled.span`
+  color: red;
+  font-size: 14px;
 `;
 
-export const ButtonContainer = styled("div")`
-  text-align: end;
-  position: relative;
+export const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 10px;
+`;
 
-  @media only screen and (max-width: 414px) {
-    padding-top: 0.75rem;
-  }
+export const Message = styled.p<{ success?: boolean; error?: boolean }>`
+  font-size: 16px;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  color: ${({ success, error }) => (success ? "green" : error ? "red" : "black")};
+  background-color: ${({ success, error }) => (success ? "#d4edda" : error ? "#f8d7da" : "transparent")};
+  border: ${({ success, error }) => (success ? "1px solid #c3e6cb" : error ? "1px solid #f5c6cb" : "none")};
 `;

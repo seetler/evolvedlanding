@@ -34,3 +34,9 @@ export interface validateProps {
   message: string;
   email: string;
 }
+
+export interface IValues {
+  name: string;
+  email: string;
+  message: string;
+}
