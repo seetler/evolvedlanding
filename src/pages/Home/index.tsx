@@ -34,7 +34,7 @@ const Home = () => {
         title={AboutContent.title}
         content={AboutContent.text}
         section={AboutContent.section}
-        icon="family.webp"
+        icon="work.webp"
         id="about"
       />
       <ContentBlock
@@ -48,7 +48,7 @@ const Home = () => {
         direction="left"
         title={ProductContent.title}
         content={ProductContent.text}
-        icon="work.webp"
+        icon="family.webp"
         id="product"
       />
       {/* <Contact

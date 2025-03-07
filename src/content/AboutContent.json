@@ -1,15 +1,15 @@
 {
-  "title": "Civic Code AI Answers Questions",
-  "text": "TAt Civic Code AI, we specialize in developing customized kiosks that cater to the unique needs of county governments.",
+  "title": "Get Useful Answers",
+  "text": "It's never been simpler to set up a helpbot built for your business!",
   "section": [
     {
-      "title": "Is there a parade this weekend, and what is its route?",
-      "content": "Providing up-to-date information of county calendars, including both upcoming and past events.",
+      "title": "Create Your Helpbot",
+      "content": "Manage multiple helpbots catered for each audience.",
       "icon": "notes.svg"
     },
     {
-      "title": "What are the local parks, museums, and recreations?",
-      "content": "Offering details on nearby parks, museums, recreational facilities, and upcoming community events.",
+      "title": "Update Your Helpbot",
+      "content": "Upload documents to expand the knowledge base.",
       "icon": "notes.svg"
     }
   ]
