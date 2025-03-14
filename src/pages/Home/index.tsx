@@ -1,5 +1,5 @@
 import { lazy } from "react";
-import IntroContent from "../../content/IntroContent.json";
+// import IntroContent from "../../content/IntroContent.json";
 import MiddleBlockContent from "../../content/MiddleBlockContent.json";
 import AboutContent from "../../content/AboutContent.json";
 import MissionContent from "../../content/MissionContent.json";
@@ -16,14 +16,6 @@ const Home = () => {
   return (
     <Container>
       <ScrollToTop />
-      <ContentBlock
-        direction="right"
-        title={IntroContent.title}
-        content={IntroContent.text}
-        button={IntroContent.button}
-        icon="developer.svg"
-        id="intro"
-      />
       <MiddleBlock
         title={MiddleBlockContent.title}
         content={MiddleBlockContent.text}

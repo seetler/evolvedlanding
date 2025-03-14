@@ -4,12 +4,12 @@
   "section": [
     {
       "title": "Create Your Helpbot",
-      "content": "Manage multiple helpbots catered for each audience.",
+      "content": "Manage multiple helpbots catered for every audience.",
       "icon": "notes.svg"
     },
     {
-      "title": "Update Your Helpbot",
-      "content": "Upload documents to expand the knowledge base.",
+      "title": "Customzied for Each Client",
+      "content": "Assign different data sources for each client to provide customized answers.",
       "icon": "notes.svg"
     }
   ]
